@@ -17,6 +17,9 @@ namespace SalesWebMvc.Models
         //Propriedade Department
         public Department Department { get; set; }
 
+        //Propriedade para gerar ID quando criar um vendedor
+        public int DepartmentId { get; set; }
+
         //Associação 1 vendedor possui n vendas
         //ICollection -> Coleção generica, aceita lista, conjuntos, etc.
         //Propriedade com nome Sales já instanciada
