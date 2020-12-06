@@ -10,14 +10,14 @@ namespace SalesWebMvc.Services
 {
     public class SellerService
     {
-        //Dependencia com SalesWebMvcContext
+        //Dependencia com context e construtor
         private readonly SalesWebMvcContext _context;
-
-        //Construtor com argumentos
         public SellerService(SalesWebMvcContext context)
         {
             _context = context;
         }
+
+
 
         //Criar um método de lista para retornar todos os vendedores do banco de dados
         public List<Seller> FindAll()
@@ -28,7 +28,6 @@ namespace SalesWebMvc.Services
         //Inserir um novo vendedor no banco de dados
         public void Insert(Seller obj)
         {
-            obj.Department = _context.Department.First();
             _context.Add(obj);
             _context.SaveChanges();
         }
