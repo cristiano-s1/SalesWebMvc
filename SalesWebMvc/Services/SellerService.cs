@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using SalesWebMvc.Services.Exceptions;
 
 namespace SalesWebMvc.Services
 {
@@ -41,6 +42,31 @@ namespace SalesWebMvc.Services
             var obj = _context.Seller.Find(id);
             _context.Seller.Remove(obj);
             _context.SaveChanges();
+        }
+
+        public void Uddate(Seller obj)
+        {
+            //Verificar de existe algum registro no banco de dados com a condição colocada
+            if (!_context.Seller.Any(x => x.Id == obj.Id))
+            {
+                //Se não existir lançar exception
+                throw new NotFoundException("Id not found");
+            }
+
+            //Bloco try para capturar uma possivel ocorrencia de exceção do banco de dados
+            try
+            {
+                //Se existir atualizar o objeto
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+
+            //Se ocorrer a exceção do Entity Framework
+            catch (DbConcurrencyException e )
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
+            
         }
 
     }
