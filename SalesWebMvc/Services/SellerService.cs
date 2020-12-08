@@ -44,7 +44,7 @@ namespace SalesWebMvc.Services
             _context.SaveChanges();
         }
 
-        public void Uddate(Seller obj)
+        public void Update(Seller obj)
         {
             //Verificar de existe algum registro no banco de dados com a condição colocada
             if (!_context.Seller.Any(x => x.Id == obj.Id))
