@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace SalesWebMvc.Models
@@ -9,8 +10,17 @@ namespace SalesWebMvc.Models
         //Propriedades
         public int Id { get; set; }
         public String Name { get; set; }
+
+        [DataType(DataType.EmailAddress)]
         public String Email { get; set; }
+
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
+
+        [Display(Name = "Base Salary")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double BaseDalary { get; set; }
 
         //Associação vendedores possui 1 departamento
